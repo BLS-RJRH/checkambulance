@@ -28,7 +28,7 @@
         .status-ng-btn:has(input:checked) {
             background-color: #ef4444 !important; /* Crimson Red Background */
             color: #ffffff !important;            /* White text */
-            border-color: #border-color: #dc2626 !important;     /* Dark Red Border */
+            border-color: #dc2626 !important;     /* Dark Red Border */
             border-width: 2px !important;
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
@@ -306,7 +306,7 @@
                 🎉
             </div>
             <h3 class="text-lg font-bold text-slate-900 mb-2">บันทึกข้อมูลสำเร็จ!</h3>
-            <p class="text-sm text-slate-600 mb-6 leading-relaxed">ระบบได้ทำการบันทึกข้อมูลการตรวจเช็ครถพยาบาล </br>ลงในระบบระบบฐานข้อมูลเรียบร้อยแล้ว</p>
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed">ระบบได้ทำการบันทึกข้อมูลการตรวจเช็ครถพยาบาล เรียบร้อยแล้ว</p>
             <button type="button" onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3 px-4 rounded-xl shadow-md border border-amber-500/10 transition active:scale-[0.98] cursor-pointer">
                 ตกลง
             </button>
@@ -384,6 +384,15 @@
             const formData = new FormData(this);
             const object = {};
             formData.forEach((value, key) => object[key] = value);
+            
+            // 📅 ดึงข้อมูลเฉพาะวันที่ (Date) ไม่เอาเศษเวลา (Time) รูปแบบ YYYY-MM-DD เพื่อความยืดหยุ่นของข้อมูล
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            
+            // แทรกค่าวันที่เข้า Object ในคีย์ชื่อ 'timestamp' 
+            object['timestamp'] = `${year}-${month}-${day}`;
             
             const googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxmiAm4aVJBYN01ZwtdRSgOuNC5oceJrjZqzwWFs7L1Sm6iBt9cGCDlNMsfPx3msq0/exec";
 
