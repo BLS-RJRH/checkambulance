@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบบันทึกการเช็ครถพยาบาลดิจิทัล V4 (Premium Green-Gold)</title>
-    <!-- นำเข้า Google Fonts: TH Sarabun PS / Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,18 +28,27 @@
         .status-ng-btn:has(input:checked) {
             background-color: #ef4444 !important; /* Crimson Red Background */
             color: #ffffff !important;            /* White text */
-            border-color: #dc2626 !important;     /* Dark Red Border */
+            border-color: #border-color: #dc2626 !important;     /* Dark Red Border */
             border-width: 2px !important;
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(245, 158, 11, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border-left-color: #f59e0b;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen antialiased text-slate-800 pb-12">
 
-    <!-- Container กลาง ออกแบบสไตล์การ์ดโค้งมนพรีเมียม -->
     <div class="max-w-xl mx-auto bg-white min-h-screen shadow-xl md:my-8 md:min-h-0 border border-slate-100 md:rounded-2xl overflow-hidden">
         
-        <!-- ส่วนหัว (Premium Header) -->
         <div class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-950 text-white p-6 text-center border-b border-amber-500/30">
             <div class="flex items-center justify-center gap-2 mb-1">
                 <span class="text-2xl">🚑</span>
@@ -49,7 +57,6 @@
             <p class="text-xs text-amber-400/90 tracking-wide font-medium">ระบบตรวจสอบสภาพยานพาหนะและอุปกรณ์การแพทย์กู้ชีพ</p>
         </div>
 
-        <!-- แท็บนำทางสไตล์พรีเมียม (Sticky Tabs) -->
         <div class="flex border-b border-slate-200 bg-slate-50/90 backdrop-blur-md sticky top-0 z-10 text-xs md:text-sm overflow-x-auto">
             <button type="button" onclick="switchStep(1)" id="tab-1" class="flex-1 py-3.5 text-center border-b-2 border-transparent text-slate-500 font-medium whitespace-nowrap px-3 transition-all duration-150">1. ข้อมูลทั่วไป</button>
             <button type="button" onclick="switchStep(2)" id="tab-2" class="flex-1 py-3.5 text-center border-b-2 border-transparent text-slate-500 font-medium whitespace-nowrap px-3 transition-all duration-150">2. เครื่องยนต์</button>
@@ -57,10 +64,8 @@
             <button type="button" onclick="switchStep(4)" id="tab-4" class="flex-1 py-3.5 text-center border-b-2 border-transparent text-slate-500 font-medium whitespace-nowrap px-3 transition-all duration-150">4. อุปกรณ์/แพทย์</button>
         </div>
 
-        <!-- ฟอร์มหลัก -->
         <form id="inspectionForm" class="p-6 space-y-6">
             
-            <!-- ================= STEP 1: ข้อมูลทั่วไป ================= -->
             <div id="step-1" class="step-content active space-y-4">
                 <div class="bg-slate-900 text-amber-400 p-3 rounded-lg text-sm font-medium border border-slate-800">
                     📌 ส่วนที่ 1: ข้อมูลพื้นฐานและการปฏิบัติงาน
@@ -75,7 +80,7 @@
                         <option value="นายไพโรจน์ ใจแสน">นายไพโรจน์ ใจแสน</option>
                         <option value="นายธวัชชัย แสงโนราช">นายธวัชชัย แสงโนราช</option>
                         <option value="นายศุภกร ชิตนุรัตน์">นายศุภกร ชิตนุรัตน์</option>
-                        <option value="นายธิติกลพ พูลเกิด">นายธิติกลพ พูลเกิด</option>
+                        <option value="นายธิติภพ พูลเกิด">นายธิติภพ พูลเกิด</option>
                         <option value="นายภาณุภณ วชิรหิรัญกุล">นายภาณุภณ วชิรหิรัญกุล</option>
                         <option value="นายธนาเทพ ฉายบุตร">นายธนาเทพ ฉายบุตร</option>
                         <option value="นายพลพรรธน์ ดีตะพันธ์สังวรณ์">นายพลพรรธน์ ดีตะพันธ์สังวรณ์</option>
@@ -131,7 +136,6 @@
                 </div>
             </div>
 
-            <!-- ================= STEP 2: ตัวรถและเครื่องยนต์ ================= -->
             <div id="step-2" class="step-content space-y-4">
                 <div class="bg-slate-900 text-amber-400 p-3 rounded-lg text-sm font-medium border border-slate-800">
                     📌 ส่วนที่ 2: ระบบตัวรถและห้องเครื่องยนต์
@@ -166,7 +170,6 @@
                 </div>
             </div>
 
-            <!-- ================= STEP 3: ระบบแสงสว่างและสัญญาณเสียง ================= -->
             <div id="step-3" class="step-content space-y-4">
                 <div class="bg-slate-900 text-amber-400 p-3 rounded-lg text-sm font-medium border border-slate-800">
                     📌 ส่วนที่ 3: ระบบส่องสว่างและสัญญาณไฟวับวาบ
@@ -209,7 +212,6 @@
                 </div>
             </div>
 
-            <!-- ================= STEP 4: อุปกรณ์เพิ่มเติมและระบบแพทย์ ================= -->
             <div id="step-4" class="step-content space-y-4">
                 <div class="bg-slate-900 text-amber-400 p-3 rounded-lg text-sm font-medium border border-slate-800">
                     📌 ส่วนที่ 4: อุปกรณ์สนับสนุนภายในรถพยาบาล
@@ -246,7 +248,6 @@
                     </script>
                 </div>
 
-                <!-- ระบบตรวจสอบถังอ๊อกซิเจน -->
                 <div class="mt-6 pt-4 border-t border-slate-200 space-y-4">
                     <div class="text-sm font-semibold text-slate-800 flex items-center gap-1.5">
                         <span>🧴</span> ค่าความดันแก๊สถังอ๊อกซิเจน (ระบุเป็นตัวเลข PSI)
@@ -283,21 +284,33 @@
                     </div>
                 </div>
 
-                <!-- ปุ่มบันทึกดีไซน์หรู -->
                 <div class="pt-4 border-t border-slate-200">
-                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3.5 px-4 rounded-xl shadow-lg border border-amber-500/20 hover:border-amber-500/40 transition active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer">
-                        💾 บันทึกการเช็ครถ
+                    <button type="submit" id="submitBtn" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3.5 px-4 rounded-xl shadow-lg border border-amber-500/20 hover:border-amber-500/40 transition active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span id="btnText">💾 บันทึกการเช็ครถ</span>
+                        <span id="btnSpinner" class="spinner hidden"></span>
                     </button>
                 </div>
             </div>
 
-            <!-- ปุ่มเปิดสเต็ปย้อนกลับ-ถัดไป ด้านล่าง -->
             <div class="flex justify-between items-center pt-2 gap-4">
                 <button type="button" id="prevBtn" onclick="moveStep(-1)" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl font-semibold text-slate-600 text-sm disabled:opacity-40 transition cursor-pointer" disabled>ย้อนกลับ</button>
                 <button type="button" id="nextBtn" onclick="moveStep(1)" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 rounded-xl font-semibold text-amber-400 text-sm transition shadow-md border border-amber-500/10 cursor-pointer">ถัดไป →</button>
             </div>
 
         </form>
+    </div>
+
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl border border-slate-100 transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-200 shadow-inner">
+                🎉
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">บันทึกข้อมูลสำเร็จ!</h3>
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed">ระบบได้ทำการบันทึกข้อมูลการตรวจเช็ครถพยาบาล พร้อมประทับเวลา (Timestamp) ลงในระบบระบบฐานข้อมูลเรียบร้อยแล้ว</p>
+            <button type="button" onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3 px-4 rounded-xl shadow-md border border-amber-500/10 transition active:scale-[0.98] cursor-pointer">
+                ตกลง
+            </button>
+        </div>
     </div>
 
     <script>
@@ -334,8 +347,40 @@
         // กำหนดให้เริ่มต้นเปิดแท็บแรกและไฮไลท์ให้ถูกต้อง
         switchStep(1);
 
+        // ฟังก์ชันควบคุม Modal
+        function openModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.querySelector('div').classList.remove('scale-95');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('opacity-100');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
         document.getElementById('inspectionForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // ดึง Element ปุ่มและ Spinner มาควบคุมสถานะ
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            // ⏳ เปลี่ยนปุ่มเป็นสถานะกำลังบันทึกและล็อกปุ่มไว้ป้องกันกดซ้ำ
+            submitBtn.disabled = true;
+            btnText.innerText = "⏳ กำลังบันทึกข้อมูลระบบ...";
+            btnSpinner.classList.remove('hidden');
+
             const formData = new FormData(this);
             const object = {};
             formData.forEach((value, key) => object[key] = value);
@@ -350,12 +395,21 @@
                 body: JSON.stringify(object)
             })
             .then(() => {
-                alert('🎉 สำเร็จ! ข้อมูลตรวจเช็ครถพยาบาลและเวลาประทับ (Timestamp) ถูกบันทึกลง Google Sheet เรียบร้อยแล้วครับ');
+                // 🟢 เรียกใช้หน้าต่างเซฟสำเร็จแบบพรีเมียม
+                openModal();
+                
+                // รีเซ็ตหน้าฟอร์มกลับไปจุดเริ่มต้น
                 this.reset();
                 switchStep(1);
             })
             .catch(error => {
                 alert('❌ ข้อผิดพลาดในการส่งข้อมูล: ' + error);
+            })
+            .finally(() => {
+                // 🔄 คืนค่าปุ่มให้กลับมาพร้อมกดใช้งานอีกครั้งหลังจากส่งข้อมูลเสร็จ
+                submitBtn.disabled = false;
+                btnText.innerText = "💾 บันทึกการเช็ครถ";
+                btnSpinner.classList.add('hidden');
             });
         });
     </script>
